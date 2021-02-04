@@ -11,3 +11,4 @@ Hoeveel scheelt het in kilobytes voor de `platform` kolom?
 Hoeveel scheelt het in kilobytes voor de `genre` kolom?
 0,013
 Hoeveel scheelt het in kilobytes voor de `publisher` kolom?
+0,039
