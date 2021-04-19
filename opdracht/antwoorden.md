@@ -1,8 +1,27 @@
-1. SELECT circuits.name, platform.platform FROM circuits JOIN races ON year = year WHERE circuits.year = "2021";
+1. 
 
-2. SELECT races, year.name FROM races JOIN drivers.driver_standing ON surname.points = points WHERE driver_standing = "10";
+SELECT races.name AS race, circuits.name AS circuit
+FROM races , circuits
+WHERE races.circuitId = circuits.circuitId
+AND races.year = (SELECT max(races2.year)
+                  FROM races races2
+                  WHERE races2.circuitId = races.circuitId)
 
-3. SELECT forename,surname FROM drivers JOIN pitstops ON milliseconds = milliseconds WHERE milliseconds < "25000";
+2. 
+
+SELECT races.name, drivers.surname, driver_standing.points
+FROM races, drivers, driver_standing
+WHERE races.raceId = driver_standing.raceId
+AND drivers.driverId = driver_standing.driverId
+and driver_standing.points = 10
+AND races.year = '2017'
+
+3. 
+
+SELECT drivers.forename, drivers.surname, pitstops.duration
+FROM drivers, pitstops
+WHERE drivers.driverId = pitstops.driverId
+AND pitstops.duration < '25'
 
 4. SELECT ConstructorRef.name FROM constructors JOIN races ON year = year WHERE races = "2010";
 
