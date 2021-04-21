@@ -4,28 +4,28 @@ SELECT races.name AS race, circuits.name AS circuit FROM races , circuits WHERE 
 
 2. 
 
-SELECT races.name, drivers.surname, driver_standing.points
-FROM races, drivers, driver_standing
-WHERE races.raceId = driver_standing.raceId
-AND drivers.driverId = driver_standing.driverId
-and driver_standing.points = 10
-AND races.year = '2017'
+SELECT races.name AS name, drivers.surname, driver_standing.points
+FROM races
+LEFT JOIN driver_standing ON races.raceId = driver_standing.raceId
+LEFT JOIN drivers ON driver_standing.driverId = drivers.driverId
+WHERE races.year = 2017
+AND driver_standing.points = 10
 
 3. 
 
 SELECT drivers.forename, drivers.surname, pitstops.duration
-FROM drivers, pitstops
-WHERE drivers.driverId = pitstops.driverId
-AND pitstops.duration < '25'
+FROM drivers
+LEFT JOIN pitstops ON drivers.driverId = pitstops.driverId
+WHERE pitstops.duration < 25
 
 4. 
 
 SELECT constructors.name AS constructor, races.name
-FROM constructors, constructor_standing, races
-WHERE constructors.constructorId = constructor_standing.constructorId
-AND constructor_standing.raceId = races.raceId
-AND constructors.name = 'Mclaren'
-AND races.year = '2010'
+FROM constructors
+LEFT JOIN constructor_standing ON constructors.constructorId = constructor_standing.constructorId
+LEFT JOIN races ON constructor_standing.raceId = races.raceId
+WHERE constructors.name = 'Mclaren'
+AND races.year = 2010
 
 5.  
 
